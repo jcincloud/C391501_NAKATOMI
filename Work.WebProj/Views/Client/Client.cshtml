@@ -1,0 +1,188 @@
+﻿@model DotWeb.BannerInfo
+@{
+    ViewBag.Title = "實際案例";
+    ViewBag.BodyClass = "Client";
+    Layout = "~/Views/Shared/Layout.cshtml";
+    <script>
+        var video = [];
+        var player = [];
+    </script>
+    foreach (var i in Model.video)
+    {
+        if (i.imgsrc != null & i.banner_url != null)
+        {
+            <script>
+                var str='@Html.Raw(i.banner_url)';
+                var start=str.indexOf('embed/')+6;
+                var vid=str.substring(start,str.indexOf('"',start));
+                video.push({id:'video-'+@i.banner_id,videoid:vid,aid:'a-'+@i.banner_id});
+            </script>
+        }
+    }
+}
+
+@section Scripts {
+    <!-- 相片輪播效果 -->
+    <link rel="stylesheet" href="~/Content/js/flexslider/flexslider.css">
+    <script src="~/Content/js/flexslider/jquery.flexslider-min.js"></script>
+    <!-- 影片輪播效果 -->
+    <script src="~/Content/js/cbp/modernizr.custom.js"></script>
+    <script src="~/Content/js/cbp/jquery.cbpContentSlider.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            // tab switcher - 預設顯示第一個
+            $(".tab-nav li:first-child").addClass('current');
+            var tab1 = $(".tab-nav li:first-child").attr("rel");
+            $(tab1).fadeIn().siblings().hide();
+            // tab switcher - 點選可切換
+            $(".tab-nav li").click(function () {
+                $(this).addClass('current').siblings().removeClass('current');
+                var tab = $(this).attr("rel");
+                $(tab).fadeIn().siblings().hide();
+                //影片暫停
+                player.forEach(function(object, i){
+                    object.pauseVideo();
+                })
+                return false;
+            });
+
+            video.forEach(function(object, i){
+                $("#"+object.aid).click(function(){
+                    player.forEach(function(object, j){
+                        if(i!=j)
+                            object.pauseVideo();
+                    })
+                });
+            })
+            // 影片滾動設定
+            $('.video-slider').cbpContentSlider();
+
+        });
+
+        $(window).load(function() {
+            // The slider being synced must be initialized first
+            $('.gallery-thumbs').flexslider({
+                animation: "slide",
+                controlNav: false,
+                itemWidth: 210,
+                itemMargin: 5,
+                prevText: "",
+                nextText: "",
+                asNavFor: '.gallery-slider'
+            });
+            $('.gallery-slider').flexslider({
+                controlNav: false,
+                prevText: "",
+                nextText: "",
+                sync: ".gallery-thumbs"
+            });
+        });
+    </script>
+    <script>
+        // Load the IFrame Player API code asynchronously.
+        var tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/player_api";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+        // Replace the 'ytplayer' element with an <iframe> and
+        // YouTube player after the API code downloads.
+
+        function onYouTubePlayerAPIReady() {
+            video.forEach(function(object, i){
+                player.push( new YT.Player(object.id, {
+                    height: '390',
+                    width: '640',
+                    videoId: object.videoid
+                }));
+            })
+        }
+    </script>
+}
+
+<div class="gallery">
+
+    <ul class="tab-nav">
+        <li class="photo" rel="#tab1">照片</li>
+        <li class="video" rel="#tab2">影片</li>
+    </ul>
+
+    <div class="tab-content">
+        <section class="photo" id="tab1">
+            <h3>實際案例照片</h3>
+            <div class="flexslider gallery-slider">
+                <ul class="slides">
+                    @foreach (var i in Model.photo)
+                    {
+                        if (i.imgsrc != null)
+                        {
+                            <li><img src="@i.imgsrc">@*<em class="flex-caption">@i.banner_name</em>*@</li>
+                        }
+                    }
+                    @*<li><img src="~/Content/images/temp/2.jpg"><em class="flex-caption">物品冷卻</em></li>
+                        <li><img src="~/Content/images/temp/1.jpg"><em class="flex-caption">食品生產線</em></li>
+                        <li><img src="~/Content/images/temp/3.jpg"><em class="flex-caption">設備冷卻</em></li>
+                        <li><img src="~/Content/images/temp/4.jpg"><em class="flex-caption">作業人員降溫</em></li>*@
+                </ul>
+            </div>
+            <div class="flexslider gallery-thumbs">
+                <ul class="slides">
+                    @foreach (var i in Model.photo)
+                    {
+                        if (i.imgsrc != null)
+                        {
+                            <li class="icon-s"><img src="@i.imgsrc">@*<em>@i.banner_name</em>*@</li>
+                        }
+                    }
+                    @*<li class="icon-s"><img src="~/Content/images/temp/2.jpg"><em>物品冷卻</em></li>
+                        <li class="icon-s"><img src="~/Content/images/temp/1.jpg"><em>食品生產線</em></li>
+                        <li class="icon-s"><img src="~/Content/images/temp/3.jpg"><em>設備冷卻</em></li>
+                        <li class="icon-s"><img src="~/Content/images/temp/4.jpg"><em>作業人員降溫</em></li>*@
+                </ul>
+            </div>
+        </section>
+
+        <section class="video-slider" id="tab2">
+            <h3>影片分享</h3>
+            <ul>
+                <!-- id 對照 nav a href -->
+                @foreach (var i in Model.video)
+                {
+                    if (i.imgsrc != null & i.banner_url != null)
+                    {
+                        <li id="@i.banner_id">
+                            <div id="video-@i.banner_id"></div>
+                        </li>
+                    }
+                }
+                @*<li id="video1">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/cNUuI3KIx9Q" frameborder="0" allowfullscreen></iframe>
+                    </li>
+                    <li id="video2">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/gPdwAz9kUZ4" frameborder="0" allowfullscreen></iframe>
+                    </li>
+                    <li id="video3">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/Tye6Jkg9rvc" frameborder="0" allowfullscreen></iframe>
+                    </li>
+                    <li id="video4">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/V6EHjznz99U" frameborder="0" allowfullscreen></iframe>
+                    </li>*@
+            </ul>
+
+            <nav class="slider-pager">
+                @foreach (var i in Model.video)
+                {
+                    if (i.imgsrc != null & i.banner_url != null)
+                    {
+                        <a id="a-@i.banner_id" href="#@i.banner_id" class="icon-s"><img src="@i.imgsrc"><em>@i.banner_name</em></a>
+                    }
+                }
+                @*<a href="#video1" class="icon-s"><img src="~/Content/images/temp/1.jpg"><em>食品生產線</em></a>
+                    <a href="#video2" class="icon-s"><img src="~/Content/images/temp/2.jpg"><em>物品冷卻</em></a>
+                    <a href="#video3" class="icon-s"><img src="~/Content/images/temp/3.jpg"><em>設備冷卻</em></a>
+                    <a href="#video4" class="icon-s"><img src="~/Content/images/temp/4.jpg"><em>作業人員降溫</em></a>*@
+            </nav>
+        </section>
+    </div><!-- tab-content //-->
+
+</div><!-- gallery //-->

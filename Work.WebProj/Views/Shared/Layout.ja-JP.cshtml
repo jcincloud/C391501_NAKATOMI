@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+<html lang="zh-tw">
+<!-- saved from url=(0014)about:internet -->
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="keywords" content="@Resources.ResWeb.keywords" />
+    <meta name="description" content="@Resources.ResWeb.description" />
+    <title>@Resources.ResWeb.WebTitle:@ViewBag.Category:@ViewBag.Title</title>
+    @if (ViewBag.IsFirstPage)
+    {
+        <link href="~/Content/css/index.css" rel="stylesheet"> }
+    else
+    {
+        <link href="~/Content/css/page.css" rel="stylesheet"> }
+    <!-- all jquery -->
+    <script src="//code.jquery.com/jquery-latest.min.js"></script>
+    <!-- 讓ie9以下讀懂html5 + css3 -->
+    <!--[if lt IE 9]><script src="//ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js"></script><![endif]-->
+</head>
+
+<body class="@ViewBag.BodyClass">
+
+    <div id="container">
+
+        <header>
+
+            <h1 onclick="location.href='@Url.Content("~/Index")'" title="回首頁">NAKATOMI</h1>
+
+            <ul id="menu">
+                <li><a href="~/AboutUs">会社概要</a></li>
+                <li>
+                    <a href="~/Products">プロダクト</a>
+                    <nav class="subnav">
+                        <a href="~/Products">冷房機器</a>
+                        <!-- <a href="~/Products/Products_list2">日本農產</a>
+                        <a href="~/Products/Products_list3">生活用品</a> -->
+                    </nav>
+                </li>
+                <li><a href="~/News">最新ニュース</a></li>
+                <li><a href="~/ContactUs">お問い合わせ</a></li>
+            </ul>
+
+            <nav class="topnav">
+                <a href="@Url.Action("SetLanguage")?L=zh-TW&A=index">中文</a> /
+                <a href="@Url.Action("SetLanguage")?L=en-US&A=index">ENG</a> /
+                <a href="@Url.Action("SetLanguage")?L=ja-JP&A=index">JP</a>
+            </nav>
+
+            @if (ViewBag.IsFirstPage)
+            {
+                <div id="banner" class="flexslider">
+                    <ul class="slides">
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                    </ul>
+                </div><!-- banner //-->
+            }
+            else { }
+        </header>
+        <div id="main">
+            @RenderBody()
+        </div><!-- main //-->
+    </div><!-- container //-->
+    <footer>
+        <div class="copyright">2015 Copyrights &copy; T-JNT TAIWAN</div>
+        <p>新北市汐止區新台五路一段79號6樓之10 / 客服專線:(02)2698-1201</p>
+    </footer>
+    <a class="goTop" href="#container">TOP</a>
+    <!-- <div class="md-overlay"></div> -->
+    <!-- 圖片輪播 -->
+    <script src="~/Scripts/jquery.flexslider-min.js"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

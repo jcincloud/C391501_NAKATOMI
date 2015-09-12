@@ -1,0 +1,38 @@
+﻿@model ProcCore.Business.DB0.c_NewsData
+@using Resources
+@{
+    Layout = "~/Views/Shared/Manage/RLayout.cshtml";
+
+    if (MvcSiteMapProvider.SiteMaps.Current.CurrentNode != null && MvcSiteMapProvider.SiteMaps.Current.CurrentNode.ParentNode != null)
+    {
+        ViewBag.Caption = MvcSiteMapProvider.SiteMaps.Current.CurrentNode.Title;
+        ViewBag.MenuName = MvcSiteMapProvider.SiteMaps.Current.CurrentNode.ParentNode.Title;
+    }
+    else
+    {
+        ViewBag.Caption = "測試中";
+        ViewBag.MenuName = "功能選單";
+    }
+
+    string popWindowTitle = ViewBag.Caption + "-";
+}
+@section IncludeCSS{
+    <link rel="stylesheet" href="~/_Code/css/css/datetimepicker/bootstrap-datetimepicker-build.css" />
+}
+@section IncludeScript{
+    @Html.Partial("Manage/jsCommVar")
+    <script>
+        var Info_Insert_Success = '@Resources.Res.Info_Insert_Success';
+        var Info_Update_Success = '@Resources.Res.Info_Update_Success';
+    </script>
+    <script src="~/ckeditor/ckeditor.js"></script>
+    @Scripts.Render("~/newsRct")
+    <script>
+        var getRootDOM = document.getElementById('content');
+        var rootParm = { MenuName: '@ViewBag.MenuName', Caption: '@ViewBag.Caption' };
+        var Comp = React.render(React.createElement(GirdForm, rootParm), getRootDOM);
+    </script>
+}
+@section sidebar{
+    @Html.Partial("Manage/vucMenu")
+}

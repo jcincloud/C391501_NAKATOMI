@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<document>
+    <file>
+      <sort>1</sort>
+      <name>newsAdd.html</name>
+      <memo>【最新消息】操作教學影片(新增)</memo>
+    </file>
+
+    <file>
+      <sort>2</sort>
+      <name>newsEdit.html</name>
+      <memo>【最新消息】操作教學影片(修改)</memo>
+    </file>
+
+    <file>
+      <sort>3</sort>
+      <name>newsDel.html</name>
+      <memo>【最新消息】操作教學影片(刪除)</memo>
+    </file>
+
+    <file>
+      <sort>4</sort>
+      <name>ckfinder.html</name>
+      <memo>【最新消息】操作教學影片(編輯器)</memo>
+    </file>
+
+</document>

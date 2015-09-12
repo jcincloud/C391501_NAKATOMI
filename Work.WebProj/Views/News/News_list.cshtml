@@ -1,0 +1,36 @@
+﻿@model List<ProcCore.Business.DB0.m_News>
+@{
+    ViewBag.Title = "最新消息";
+    ViewBag.BodyClass = "News";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<ul class="breadcrumb">
+    <li><a href="~/index">HOME</a></li>
+    <li>最新消息</li>
+</ul>
+
+<section>
+
+    <h3>最新消息:</h3>
+
+    <ul class="text-list">
+        @foreach (var item in Model)
+        {
+            <li>
+                <a class="hv-line" href="~/News/News_Content?id=@item.news_id">
+                    @if (item.is_interval)
+                    {
+                        <span>@item.start_day.Month/@item.start_day.Day~@DateTime.Parse(item.end_day.ToString()).Month/@DateTime.Parse(item.end_day.ToString()).Day</span>
+                    }
+                    else
+                    {
+                        <span>@item.start_day.Month/@item.start_day.Day</span>
+                    }
+                    @item.title
+                </a>
+            </li>
+        }
+    </ul>
+
+</section>

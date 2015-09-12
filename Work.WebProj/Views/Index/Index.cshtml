@@ -1,0 +1,139 @@
+﻿@model DotWeb.WebInfo
+@{
+    ViewBag.Title = "首頁";
+    ViewBag.IsFirstPage = true;
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<!-- <section class="news">
+    <h3>最新消息</h3>
+    <ul class="text-list">
+        @foreach (var news in Model.News)
+        {
+            <li><a class="hv-line" href="~/News/News_Content?id=@news.news_id">@news.title</a></li>
+        }
+    </ul>
+</section> --><!-- news //-->
+
+<section id="about">
+    <h2>NAKATOMI</h2>
+    <p>台灣杰恩醍貿易有限公司成立於2015年1月1日,專門負責日商NAKATOMI株式會社之移動式工業空調的對外出口事業,以及各種季節性日本進口商品的販售,為日商NAKATOMI株式會社百分之百出資的台灣子公司</p>
+    <p>我們的總部設立於新北市汐止遠東工業園區,並於台中與台南分別設置倉儲與營業據點.未來將以台灣為立足點,把我們的商品行銷到世界各地.</p>
+</section>
+
+<section id="points">
+    <div class="align-c">
+        <cite title="無須安裝,環保概念,安全設計,省電節能">日本國內領先品牌NAKATOMI移動式工業空調累積銷售突破20萬台，在台隆重推出。</cite>
+        <p>台灣國內庫存、隨叫隨到、安心售後服務、隨叫隨到。<br>使用世界知名品牌壓縮機，環保冷媒R410A冷媒。</p>
+    </div>
+    <img src="~/Content/images/index/points.png" alt="移動式工業空調">
+</section>
+
+<section id="question" class="align-c">
+    <h2 class="t2">[移動式工業空調的由來]</h2>
+    <p>移動式空調在1970年代即被研發上市，應用在汽車生產線、冷卻產線溫度；之後才漸漸被廣泛使用。尤其到了日本311核災後，為了追求節能效應、移動式工業空調在日本工商業各市場所獲得空前的蓬勃發展，目前應用已相當普及，而相對台灣則處萌芽階段，市場潛力可期。</p>
+    <p>移動式工業空調與一般家庭冷氣不同，主要強調可依區域或需要自由移動，針對局部環境降溫使用，因此不只是產線、無論是人體、機器、物品，在密閉環境或開放空間的降溫，甚至需要空氣乾燥的場所都可以應用。例如工廠、廠房、修車廠、高爾夫球場、戶外餐廳、中央廚房等等。而相較於中央空調，可省去長期電力浪費在不必要冷的地方上，達到節能效益。相較於大型工業風扇，降溫效果較佳。</p>
+</section>
+
+<section id="traits">
+    <h2 class="t1">產品特性：</h2>
+    <ol>
+        <li><img src="~/Content/images/index/traits.jpg" alt="無須安裝:省去麻煩的安裝步驟,導風管容易安裝,可立即使用."></li>
+        <li><img src="~/Content/images/index/traits2.jpg" alt="環保概念:採用R410A環保冷媒,臭氧層無汙染."></li>
+        <li><img src="~/Content/images/index/traits3.jpg" alt="安全設計:壓縮機過熱時,溫度保護器會自動切斷電器回路,確保安全."></li>
+        <li><img src="~/Content/images/index/traits4.jpg" alt="省電節能:針對局部區域製冷,減少能源耗損."></li>
+    </ol>
+</section>
+
+<section id="places">
+    <h2 class="t1">適用場合</h2>
+    <p>可提高作業人員、作業現場的工作效率，並且以最小成本換取最大收益。<br>移動式空調是您經濟實惠的最佳選擇。可靈活運用在工廠、作業現場、高爾夫球場、商店等等各式場所。</p>
+    <ol>
+        @foreach (var i in Model.Banner)
+        {
+            if (i.imgsrc != null)
+            {
+                <li><img src="@i.imgsrc" alt="@i.banner_name"></li>
+            }
+        }
+        @*<li><img src="~/Content/images/index/places.jpg" alt="工業廠房"></li>
+            <li><img src="~/Content/images/index/places2.jpg" alt="高爾夫球場"></li>
+            <li><img src="~/Content/images/index/places3.jpg" alt="維修工廠"></li>
+            <li><img src="~/Content/images/index/places4.jpg" alt="商店"></li>*@
+    </ol>
+</section>
+
+<section id="specs">
+    <h2 class="t2">產品細節介紹</h2>
+    <img src="~/Content/images/index/specs.jpg" alt="增加工作環境的舒適度">
+</section>
+
+<section id="measures" class="align-c">
+    <h2 class="t1">產品規格圖片與參數</h2>
+    <article>
+        排氣管伸縮自如
+    </article>
+</section>
+
+<section id="product">
+    <h3>商品系列:</h3>
+    <div class="grid">
+        <figure>
+            <img src="~/Content/images/Products/SAC-6500.jpg" alt="產品圖">
+            <figcaption>
+                <h4>三管移動式工業空調<br>SAC-6500(TW)</h4>
+                <a href="~/Products/Products_SAC6500">點選看詳細介紹</a>
+            </figcaption>
+        </figure>
+
+        <figure>
+            <img src="~/Content/images/Products/SAC-4500.jpg" alt="產品圖">
+            <figcaption>
+                <h4>自動擺頭雙管移動式工業空調<br>SAC-4500(TW)</h4>
+                <a href="~/Products/Products_SAC4500">點選看詳細介紹</a>
+            </figcaption>
+        </figure>
+
+        <figure>
+            <img src="~/Content/images/Products/SAC-1800.jpg" alt="產品圖">
+            <figcaption>
+                <h4>袖珍型單管移動式工業空調<br>SAC-1800(TW)</h4>
+                <a href="~/Products/Products_SAC1800">點選看詳細介紹</a>
+            </figcaption>
+        </figure>
+
+        <figure>
+            <img src="~/Content/images/Products/N407-TC.jpg" alt="產品圖">
+            <figcaption>
+                <h4>自動擺頭單管移動式工業空調<br>N407-TC(TW)</h4>
+                <a href="~/Products/Products_N407TC">點選看詳細介紹</a>
+            </figcaption>
+        </figure>
+
+        <figure>
+            <img src="~/Content/images/Products/N407-TC.jpg" alt="產品圖">
+            <figcaption>
+                <h4>自動擺頭單管移動式工業空調<br>N410-TC(TW)</h4>
+                <a href="~/Products/Products_N410TC">點選看詳細介紹</a>
+            </figcaption>
+        </figure>
+    </div>
+</section><!-- products //-->
+<!-- <section class="search">
+    <h3>產品搜尋</h3>
+    <div class="play"></div>
+    <a href="~/Products/map">>更多最新下載</a>
+</section> --><!-- search -->
+
+<section id="contact">
+    <div class="float-l">
+        <h2 class="t1">聯絡我們:</h2>
+        <p>如果您有任何的問題,都可以透過下列的聯繫管道找到我們台灣杰恩醍貿易有限公司</p>
+        <ul class="addr">
+            <li>台北總部: 新北市汐止區新台五路一段79號6樓之10</li>
+            <li>客服電話: (02) 2698-1201</li>
+            <li>客服傳真: (02) 2698-1202</li>
+        </ul>
+    </div>
+    <a class="float-r hv-line" href="mailto:sales@t-jnt.com">sales@t-jnt.com</a>
+</section>

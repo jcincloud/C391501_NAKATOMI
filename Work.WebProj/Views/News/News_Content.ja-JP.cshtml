@@ -1,0 +1,27 @@
+﻿@model ProcCore.Business.DB0.News
+@{
+    ViewBag.Title = "最新ニュース";
+    ViewBag.BodyClass = "News";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<ul class="breadcrumb">
+    <li><a href="~/index">HOME</a></li>
+    <li><a href="~/News">最新ニュース</a></li>
+    <li>@Model.title</li>
+</ul>
+
+<section>
+
+    <h3>@Model.title</h3>
+
+    <article>
+        <!-- 編輯器內容放此 下圖為範例 -->
+        @Html.Raw(Model.introduction)
+    </article>
+
+    <div class="align-r">
+        <a href="~/News" class="btn">回列表</a>
+    </div><!-- align-r //-->
+
+</section>

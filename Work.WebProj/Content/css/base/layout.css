@@ -1,0 +1,198 @@
+@charset "utf-8";
+
+/*      layout
+-----------------------------------------------------------------------*/
+#container {
+    background: #fff url(../../images/bg2.gif) center bottom no-repeat;
+    max-width: 1366px;
+    min-width: 1007px;
+    height:100%;
+    margin:auto; *margin:0;
+}
+body > #container {
+    height:auto;
+    min-height: 100%;
+}
+header,
+#main,
+footer {
+    position:relative;
+    margin: auto;
+}
+header {
+    background: #89C42E url(../../images/bg.gif) 0 bottom no-repeat;
+    border-bottom: 6px solid #EBEBEB;
+    height: 90px;
+    z-index:2;
+}
+#main {
+    text-align: left;
+    padding-bottom: 120px;
+    overflow:hidden;
+    z-index:1;
+    *zoom:1;
+}
+footer {
+    background: #16B47C;
+    letter-spacing: 0.8px;
+    max-width: 1366px;
+    min-width: 1007px;
+    height: 70px;
+    margin-top: -70px;
+	clear: both;
+    overflow:hidden;
+    z-index: 3;
+}
+
+
+/*      header
+-----------------------------------------------------------------------*/
+h1, .topnav, #menu, .subnav { position: absolute; }
+
+/* logo */
+h1 {
+    background: url('../../images/logo.png') no-repeat 0 0;
+    text-indent: -9999px;
+    width: 185px; height:194px;
+    top:0; left: 25px;
+    cursor:pointer; cursor:hand;
+    z-index: 555;
+    }
+
+#banner {
+    width: 100%;
+    position: relative;
+}
+
+.topnav {
+    color: #fff;
+    right:50px; top: 8px;
+    margin-left: -243px;
+    z-index: 2;
+}
+.topnav a {
+    color: #fff;
+    font-size: .875em;
+    padding: 0 5px;
+}
+.topnav a:hover { color: #D5F0A3; }
+
+/* 主選單 */
+#menu {
+    /* 2015/07/21 --tin
+    top:51px;
+    2015/08/03 --tin
+    top: 44px;*/
+    top: 36px;
+    right: 25px;
+
+    z-index: 666;
+}
+#menu > li {
+    display: inline; float: left;
+    position: relative;
+}
+
+#menu > li > a {
+    display: block;
+    text-align: center;
+    /*color: #fff;
+    padding: 11px 28px;
+    min-width: 100px;*/
+
+    /* 2015/07/21 --tin */
+    font-size: 1.4em;
+
+    /* 2015/08/03 --tin */
+    background: #EBEBEB;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    color: #2EA662;
+    font-weight: bold;
+    padding: 15px 0;
+    width: 156px;
+    margin-left: 10px;
+}
+#menu > li > a:hover,
+#menu > li > a:active,
+#menu > li > a:focus,
+.AboutUs #menu > li:nth-child(1) > a,
+.Products #menu > li:nth-child(2) > a,
+.News #menu > li:nth-child(3) > a,
+.ContactUs #menu > li:nth-child(4) > a,
+.Client #menu > li:nth-child(3) > a,
+.Info #menu > li:nth-child(4) > a {
+    /*border-bottom: 6px solid #5EC091;*/
+
+    /* 2015/08/03 --tin */
+    background: #5EC091;
+    color: #fff
+}
+/* 子選單 */
+.subnav {
+    background: #ED7165;
+    border: 1px solid #EBEBEB; border-top: none;
+    text-align: center;
+    padding-top: 6px;
+    width: 100%;
+
+    top: 39px;
+    opacity: 0;
+    visibility: hidden;
+
+    -webkit-transition: visibility 0s, opacity .35s;
+    -ms-transition: visibility 0s, opacity .35s;
+    transition: visibility 0s, opacity .35s;
+}
+#menu > li:hover .subnav { visibility: visible; opacity: 1; }
+.subnav a {
+    display: block;
+    background: #ECECEC;
+    color: #86C32C;
+    font-size: .875em;
+    line-height: 38px;
+}
+.subnav a:nth-child(even) { background: #F4F4F4 }
+.subnav a:hover { background: #86C32C; color: #fff; }
+
+/* header .fixed {
+    box-sizing: border-box;
+    right: 14px;
+    padding: 16px 15px;
+    width: 90px;
+    height: 277px;
+
+    background: url(../../images/rent.png) 0 0 no-repeat;
+    color: #fff;
+    font-size: 2.125em;
+    line-height: 120%;
+
+    visibility: hidden;
+}
+header .fixed:hover {
+    background-image: url(../../images/rent2.png);
+}*/
+
+
+/*      footer
+-----------------------------------------------------------------------*/
+.copyright, footer p {
+    color: #fff;
+    font-size: .9375em;
+    margin-top: 15px;
+}
+footer p { margin-top: 5px; }
+
+.goTop {
+    background: url('../../images/top.png') 0 0 no-repeat;
+    text-indent: -9999px;
+    width: 93px; height: 102px;
+    position: fixed;
+    bottom: 1%; right: 3%;
+    z-index: 999;
+    -ms-transition: all .5s ease;
+    transition: all .5s ease;
+    opacity: .8;
+    display: none;
+}
+.goTop:hover { background-image: url('../../images/top2.png'); opacity: 1 }

@@ -1,0 +1,56 @@
+﻿@model DotWeb.WebInfo
+@{
+    ViewBag.Title = "首頁";
+    ViewBag.IsFirstPage = true;
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+@section Scripts {
+    <script>
+        // 輪播
+        $(window).load(function () {
+            // banner輪播
+            $('#banner').flexslider({
+                slideshowSpeed: 6500
+            });
+            // 產品圖輪播
+            $('#carousel').flexslider({
+                animation: "slide",
+                controlNav: false,
+                itemWidth: 100,
+                itemMargin: 4,
+                // minItems: 3,
+                maxItems: 3
+            });
+        });
+    </script>
+}
+
+<section class="news">
+    <h3>最新ニュース</h3>
+    <ul class="text-list">
+        @foreach (var news in Model.News)
+        {
+            <li><a class="hv-line" href="~/News/News_Content?id=@news.news_id">@news.title</a></li>
+        }
+    </ul>
+</section><!-- news //-->
+
+<section class="products">
+    <h3>主要製品</h3>
+    <div id="carousel" class="flexslider">
+        <ul class="slides">
+            <li><a href="~/Products/Products_SAC6500"><img src="~/Content/images/index/pic.png" alt="產品圖1"></a></li>
+            <li><a href="~/Products/Products_SAC65002"><img src="~/Content/images/index/pic2.png" alt="產品圖2"></a></li>
+            <li><a href="~/Products/Products_SAC1800"><img src="~/Content/images/index/pic3.png" alt="產品圖3"></a></li>
+            <li><a href="~/Products/Products_N407TC"><img src="~/Content/images/index/pic4.png" alt="產品圖4"></a></li>
+            <li><a href="~/Products/Products_SAC65005"><img src="~/Content/images/index/pic5.png" alt="產品圖4"></a></li>
+        </ul>
+    </div>
+</section><!-- products //-->
+
+<section class="search">
+    <h3>検索</h3>
+    <div class="play"></div>
+    <a href="~/Products">>その他のダウンロード</a>
+</section><!-- search -->
